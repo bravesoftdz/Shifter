@@ -170,6 +170,7 @@ begin
   StringGrid.Cells[2, i] := DateToStr(Now);
   StringGrid.Cells[3, i] := IntToStr(Level);
   StringGrid.Cells[4, i] := IntToStr(Score);
+  StringGrid.Row := i;
   { remove rows over 20 }
   while StringGrid.RowCount > SCOREROWS + 1 do { +1: header }
     StringGrid.RemoveRow(StringGrid.RowCount - 1); { -1: grid index 0 based }
