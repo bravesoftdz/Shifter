@@ -52,7 +52,6 @@ type
     StyleSmokeyQuartzKamriAction: TAction;
     StyleTurquoiseGrayAction: TAction;
     StyleWindowsAction: TAction;
-    Action1: TAction;
     ImageList: TImageList;
     MenuImageList: TBCImageList;
     XPManifest: TXPManifest;
