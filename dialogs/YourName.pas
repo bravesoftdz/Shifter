@@ -41,6 +41,7 @@ begin
   if FYourNameDialog = nil then
     Application.CreateForm(TYourNameDialog, FYourNameDialog);
   Result := FYourNameDialog;
+  Common.SetStyledFormSize(Result, 210, 105);
 end;
 
 procedure TYourNameDialog.FormDestroy(Sender: TObject);

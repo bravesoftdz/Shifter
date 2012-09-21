@@ -54,16 +54,7 @@ begin
   if FScoreDialog = nil then
     Application.CreateForm(TScoreDialog, FScoreDialog);
   Result := FScoreDialog;
-
-  { style fix }
-  Result.Width := 404;
-  Result.Height := 474;
-  if Assigned(TStyleManager.ActiveStyle) then
-    if TStyleManager.ActiveStyle.Name <> 'Windows' then
-    begin
-      Result.Width := Result.Width + 4;
-      Result.Height := Result.Height + 8
-    end;
+  Common.SetStyledFormSize(Result, 404, 474);
 end;
 
 procedure TScoreDialog.FormDestroy(Sender: TObject);

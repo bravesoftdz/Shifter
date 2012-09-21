@@ -45,6 +45,7 @@ begin
   if FAboutDialog = nil then
     Application.CreateForm(TAboutDialog, FAboutDialog);
   Result := FAboutDialog;
+  Common.SetStyledFormSize(Result, 312, 242);
 end;
 
 procedure TAboutDialog.Open;
