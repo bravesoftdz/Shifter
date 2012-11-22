@@ -10,7 +10,8 @@ uses
   Vcl.Themes,
   Vcl.Styles,
   Common in '..\..\Common\units\Common.pas',
-  BigIni in '..\..\Common\units\BigIni.pas';
+  BigIni in '..\..\Common\units\BigIni.pas',
+  Dlg in '..\..\Common\dialogs\Dlg.pas' {Dialog};
 
 {$R *.res}
 

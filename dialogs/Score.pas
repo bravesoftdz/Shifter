@@ -3,7 +3,7 @@ unit Score;
 interface
 
 uses
-  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
+  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs, Dlg,
   ExtCtrls, StdCtrls, Vcl.Grids, JvExGrids, JvStringGrid, BCStringGrid, Vcl.ActnList;
 
 const
@@ -13,7 +13,7 @@ const
   SECTION_SCORETABLE = 'ScoreTable';
 
 type
-  TScoreDialog = class(TForm)
+  TScoreDialog = class(TDialog)
     ClientPanel: TPanel;
     BottomPanel: TPanel;
     StringGrid: TBCStringGrid;
@@ -54,7 +54,7 @@ begin
   if FScoreDialog = nil then
     Application.CreateForm(TScoreDialog, FScoreDialog);
   Result := FScoreDialog;
-  Common.SetStyledFormSize(Result, 404, 474);
+  Common.SetStyledFormSize(Result);
 end;
 
 procedure TScoreDialog.FormDestroy(Sender: TObject);

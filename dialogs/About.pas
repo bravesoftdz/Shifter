@@ -3,11 +3,11 @@ unit About;
 interface
 
 uses
-  System.SysUtils, Winapi.Windows, Winapi.Messages, System.Classes, Vcl.Graphics,
+  System.SysUtils, Winapi.Windows, Winapi.Messages, System.Classes, Vcl.Graphics, Dlg,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls;
 
 type
-  TAboutDialog = class(TForm)
+  TAboutDialog = class(TDialog)
     OKButton: TButton;
     TopPanel: TPanel;
     KayttovaltuusImage: TImage;
@@ -45,7 +45,7 @@ begin
   if FAboutDialog = nil then
     Application.CreateForm(TAboutDialog, FAboutDialog);
   Result := FAboutDialog;
-  Common.SetStyledFormSize(Result, 312, 242);
+  Common.SetStyledFormSize(Result);
 end;
 
 procedure TAboutDialog.Open;

@@ -4,10 +4,10 @@ interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  StdCtrls, Vcl.ExtCtrls;
+  StdCtrls, Vcl.ExtCtrls, Dlg;
 
 type
-  TYourNameDialog = class(TForm)
+  TYourNameDialog = class(TDialog)
     Panel1: TPanel;
     NameLabel: TLabel;
     NameEdit: TEdit;
@@ -41,7 +41,7 @@ begin
   if FYourNameDialog = nil then
     Application.CreateForm(TYourNameDialog, FYourNameDialog);
   Result := FYourNameDialog;
-  Common.SetStyledFormSize(Result, 210, 105);
+  Common.SetStyledFormSize(Result);
 end;
 
 procedure TYourNameDialog.FormDestroy(Sender: TObject);
