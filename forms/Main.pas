@@ -29,32 +29,10 @@ type
     ScoresAction: TAction;
     ExitAction: TAction;
     AboutAction: TAction;
-    StyleAuricAction: TAction;
-    StyleAmakritsAction: TAction;
-    StyleAmethystKamriAction: TAction;
-    StyleAquaGraphiteAction: TAction;
-    StyleAquaLightSlateAction: TAction;
-    StyleCarbonAction: TAction;
-    StyleCharcoalDarkSlateAction: TAction;
-    StyleCobaltXEMediaAction: TAction;
-    StyleCyanDuskAction: TAction;
-    StyleCyanNightAction: TAction;
-    StyleEmeraldLightSlateAction: TAction;
-    StyleGoldenGraphiteAction: TAction;
-    StyleIcebergClassicoAction: TAction;
-    StyleLavenderClassicoAction: TAction;
-    StyleMetroBlackAction: TAction;
-    StyleMetroBlueAction: TAction;
-    StyleMetroGreenAction: TAction;
-    StyleRubyGraphiteAction: TAction;
-    StyleSaphireKamriAction: TAction;
-    StyleSlateClassicoAction: TAction;
-    StyleSmokeyQuartzKamriAction: TAction;
-    StyleTurquoiseGrayAction: TAction;
-    StyleWindowsAction: TAction;
     ImageList: TImageList;
     MenuImageList: TBCImageList;
     XPManifest: TXPManifest;
+    SelectStyleAction: TAction;
     procedure FormCreate(Sender: TObject);
     procedure FormCanResize(Sender: TObject; var NewWidth,
       NewHeight: Integer; var Resize: Boolean);
@@ -64,29 +42,7 @@ type
     procedure ScoresActionExecute(Sender: TObject);
     procedure ExitActionExecute(Sender: TObject);
     procedure AboutActionExecute(Sender: TObject);
-    procedure StyleAuricActionExecute(Sender: TObject);
-    procedure StyleAmakritsActionExecute(Sender: TObject);
-    procedure StyleAmethystKamriActionExecute(Sender: TObject);
-    procedure StyleAquaGraphiteActionExecute(Sender: TObject);
-    procedure StyleAquaLightSlateActionExecute(Sender: TObject);
-    procedure StyleCarbonActionExecute(Sender: TObject);
-    procedure StyleCharcoalDarkSlateActionExecute(Sender: TObject);
-    procedure StyleCobaltXEMediaActionExecute(Sender: TObject);
-    procedure StyleCyanDuskActionExecute(Sender: TObject);
-    procedure StyleCyanNightActionExecute(Sender: TObject);
-    procedure StyleEmeraldLightSlateActionExecute(Sender: TObject);
-    procedure StyleGoldenGraphiteActionExecute(Sender: TObject);
-    procedure StyleIcebergClassicoActionExecute(Sender: TObject);
-    procedure StyleLavenderClassicoActionExecute(Sender: TObject);
-    procedure StyleMetroBlackActionExecute(Sender: TObject);
-    procedure StyleMetroBlueActionExecute(Sender: TObject);
-    procedure StyleMetroGreenActionExecute(Sender: TObject);
-    procedure StyleRubyGraphiteActionExecute(Sender: TObject);
-    procedure StyleSaphireKamriActionExecute(Sender: TObject);
-    procedure StyleSlateClassicoActionExecute(Sender: TObject);
-    procedure StyleSmokeyQuartzKamriActionExecute(Sender: TObject);
-    procedure StyleTurquoiseGrayActionExecute(Sender: TObject);
-    procedure StyleWindowsActionExecute(Sender: TObject);
+    procedure SelectStyleActionExecute(Sender: TObject);
   private
     { Private declarations }
     BlockPanel: TBlockPanel;
@@ -99,17 +55,17 @@ type
     function GetProgressBarColor(Value: Integer): TColor;
     procedure SetCurrentScore(Value: Integer);
     procedure SetProgressBarPosition(Value: Integer);
-    procedure SetStyleName(Value: string);
     procedure StartNewGame;
     procedure ReadIniFile;
     procedure WriteIniFile;
     procedure WMNCRButtonDown(var Msg: TWMNCRButtonDown); message WM_NCRBUTTONDOWN;
     procedure WMSysCommand(var Msg: TWMSysCommand); message WM_SYSCOMMAND;
+    function GetActionClientItem(MenuItemIndex, SubMenuItemIndex: Integer): TActionClientItem;
+    procedure CreateStyleMenu;
   public
     { Public declarations }
     property CurrentScore: Integer write SetCurrentScore;
     property ProgressBarPosition: Integer write SetProgressBarPosition;
-    property StyleName: string write SetStyleName;
   end;
 
 var
@@ -118,7 +74,11 @@ var
 implementation
 
 uses
-  Common, System.Math, Score, About, Vcl.Themes, BigIni;
+  Common, System.Math, Score, About, Vcl.Themes, BigIni, StyleHooks, System.IOUtils;
+
+const
+  VIEW_MENU_ITEMINDEX = 1;
+  VIEW_STYLE_MENU_ITEMINDEX = 0;
 
 {$R *.dfm}
 
@@ -145,37 +105,8 @@ begin
   Application.OnRestore := OnRestore;
 
   ReadIniFile;
-  StyleName := TStyleManager.ActiveStyle.Name;
-end;
 
-procedure TMainForm.SetStyleName(Value: string);
-begin
-  StyleAmakritsAction.Checked := Value = STYLENAME_AMAKRITS;
-  StyleAmethystKamriAction.Checked := Value = STYLENAME_AMETHYST_KAMRI;
-  StyleAquaGraphiteAction.Checked := Value = STYLENAME_AQUA_GRAPHITE;
-  StyleAquaLightSlateAction.Checked := Value = STYLENAME_AQUA_LIGHT_SLATE;
-  StyleAuricAction.Checked := Value = STYLENAME_AURIC;
-  StyleCarbonAction.Checked := Value = STYLENAME_CARBON;
-  StyleCharcoalDarkSlateAction.Checked := Value = STYLENAME_CHARCOAL_DARK_SLATE;
-  StyleCobaltXEMediaAction.Checked := Value = STYLENAME_COBALT_XEMEDIA;
-  StyleCyanDuskAction.Checked := Value = STYLENAME_CYAN_DUSK;
-  StyleCyanNightAction.Checked := Value = STYLENAME_CYAN_NIGHT;
-  StyleEmeraldLightSlateAction.Checked := Value = STYLENAME_EMERALD_LIGHT_SLATE;
-  StyleGoldenGraphiteAction.Checked := Value = STYLENAME_GOLDEN_GRAPHITE;
-  StyleIcebergClassicoAction.Checked := Value = STYLENAME_ICEBERG_CLASSICO;
-  StyleLavenderClassicoAction.Checked := Value = STYLENAME_LAVENDER_CLASSICO;
-  StyleMetroBlackAction.Checked := Value = STYLENAME_METRO_BLACK;
-  StyleMetroBlueAction.Checked := Value = STYLENAME_METRO_BLUE;
-  StyleMetroGreenAction.Checked := Value = STYLENAME_METRO_GREEN;
-  StyleRubyGraphiteAction.Checked := Value = STYLENAME_RUBY_GRAPHITE;
-  StyleSaphireKamriAction.Checked := Value = STYLENAME_SAPPHIRE_KAMRI;
-  StyleSlateClassicoAction.Checked := Value = STYLENAME_SLATE_CLASSICO;
-  StyleSmokeyQuartzKamriAction.Checked := Value = STYLENAME_SMOKEY_QUARTZ_KAMRI;
-  StyleTurquoiseGrayAction.Checked := Value = STYLENAME_TURUOISE_GRAY;
-  StyleWindowsAction.Checked := Value = STYLENAME_WINDOWS;
-  if Assigned(TStyleManager.ActiveStyle) then
-    if Value <> TStyleManager.ActiveStyle.Name then
-      TStyleManager.TrySetStyle(Value);
+  CreateStyleMenu;
 end;
 
 procedure TMainForm.ReadIniFile;
@@ -205,7 +136,7 @@ begin
     WriteInteger('Size', 'Width', Width);
     WriteInteger('Size', 'Height', Height);
     if Assigned(TStyleManager.ActiveStyle) then
-      WriteString('Preferences', 'StyleName', TStyleManager.ActiveStyle.Name);
+      WriteString('Options', 'StyleName', TStyleManager.ActiveStyle.Name);
   finally
     Free;
   end;
@@ -226,6 +157,47 @@ end;
 procedure TMainForm.OnGameEndWaiting(Sender: TObject);
 begin
   ThreadedTimer.Enabled := False
+end;
+
+function TMainForm.GetActionClientItem(MenuItemIndex, SubMenuItemIndex: Integer): TActionClientItem;
+begin
+  Result := ActionMainMenuBar.ActionClient.Items[MenuItemIndex];
+  Result := Result.Items[SubMenuItemIndex];
+end;
+
+procedure TMainForm.SelectStyleActionExecute(Sender: TObject);
+var
+  i: Integer;
+  ActionCaption: string;
+  Action: TAction;
+  ActionClientItem: TActionClientItem;
+  StyleInfo: TStyleInfo;
+begin
+  Action := Sender as TAction;
+  ActionCaption := StringReplace(Action.Caption, '&', '', [rfReplaceAll]);
+
+  if Action.Caption = StyleHooks.STYLENAME_WINDOWS then
+    TStyleManager.TrySetStyle(ActionCaption)
+  else
+  if TStyleManager.IsValidStyle(ActionCaption, StyleInfo) then
+  begin
+    if Assigned(TStyleManager.Style[StyleInfo.Name]) then
+      TStyleManager.TrySetStyle(StyleInfo.Name)
+    else
+      TStyleManager.SetStyle(TStyleManager.LoadFromFile(ActionCaption));
+  end;
+
+  with TBigIniFile.Create(Common.GetINIFilename) do
+  try
+    WriteString('Options', 'StyleFilename', ExtractFilename(ActionCaption));
+  finally
+    Free;
+  end;
+
+  ActionClientItem := GetActionClientItem(VIEW_MENU_ITEMINDEX, VIEW_STYLE_MENU_ITEMINDEX);
+  for i := 0 to ActionClientItem.Items.Count - 1 do
+    TAction(ActionClientItem.Items[i].Action).Checked := False;
+  Action.Checked := True;
 end;
 
 procedure TMainForm.SetCurrentScore(Value: Integer);
@@ -368,119 +340,42 @@ begin
   WriteIniFile;
 end;
 
-procedure TMainForm.StyleAuricActionExecute(Sender: TObject);
+procedure TMainForm.CreateStyleMenu;
+var
+  FilePath, FileName: string;
+  StyleInfo: TStyleInfo;
+  ActionClientItem: TActionClientItem;
+  Action: TAction;
 begin
-  StyleName := STYLENAME_AURIC;
-end;
+  FilePath := IncludeTrailingPathDelimiter(Format('%s%s', [ExtractFilePath(ParamStr(0)), 'Styles']));
+  if not DirectoryExists(FilePath) then
+    Exit;
 
-procedure TMainForm.StyleAmakritsActionExecute(Sender: TObject);
-begin
-  StyleName := STYLENAME_AMAKRITS;
-end;
+  for FileName in TDirectory.GetFiles(FilePath, '*.vsf') do
+  begin
+    if TStyleManager.IsValidStyle(FileName, StyleInfo) then
+    begin
+      ActionClientItem := GetActionClientItem(VIEW_MENU_ITEMINDEX, VIEW_STYLE_MENU_ITEMINDEX);
+      ActionClientItem := ActionClientItem.Items.Add;
 
-procedure TMainForm.StyleAmethystKamriActionExecute(Sender: TObject);
-begin
-  StyleName := STYLENAME_AMETHYST_KAMRI;
-end;
-
-procedure TMainForm.StyleAquaGraphiteActionExecute(Sender: TObject);
-begin
-  StyleName := STYLENAME_AQUA_GRAPHITE;
-end;
-
-procedure TMainForm.StyleAquaLightSlateActionExecute(Sender: TObject);
-begin
-  StyleName := STYLENAME_AQUA_LIGHT_SLATE;
-end;
-
-procedure TMainForm.StyleCarbonActionExecute(Sender: TObject);
-begin
-  StyleName := STYLENAME_CARBON;
-end;
-
-procedure TMainForm.StyleCharcoalDarkSlateActionExecute(Sender: TObject);
-begin
-  StyleName := STYLENAME_CHARCOAL_DARK_SLATE;
-end;
-
-procedure TMainForm.StyleCobaltXEMediaActionExecute(Sender: TObject);
-begin
-  StyleName := STYLENAME_COBALT_XEMEDIA;
-end;
-
-procedure TMainForm.StyleCyanDuskActionExecute(Sender: TObject);
-begin
-  StyleName := STYLENAME_CYAN_DUSK;
-end;
-
-procedure TMainForm.StyleCyanNightActionExecute(Sender: TObject);
-begin
-  StyleName := STYLENAME_CYAN_NIGHT;
-end;
-
-procedure TMainForm.StyleEmeraldLightSlateActionExecute(Sender: TObject);
-begin
-  StyleName := STYLENAME_EMERALD_LIGHT_SLATE;
-end;
-
-procedure TMainForm.StyleGoldenGraphiteActionExecute(Sender: TObject);
-begin
-  StyleName := STYLENAME_GOLDEN_GRAPHITE;
-end;
-
-procedure TMainForm.StyleIcebergClassicoActionExecute(Sender: TObject);
-begin
-  StyleName := STYLENAME_ICEBERG_CLASSICO;
-end;
-
-procedure TMainForm.StyleLavenderClassicoActionExecute(Sender: TObject);
-begin
-  StyleName := STYLENAME_LAVENDER_CLASSICO;
-end;
-
-procedure TMainForm.StyleMetroBlackActionExecute(Sender: TObject);
-begin
-  StyleName := STYLENAME_METRO_BLACK;
-end;
-
-procedure TMainForm.StyleMetroBlueActionExecute(Sender: TObject);
-begin
-  StyleName := STYLENAME_METRO_BLUE;
-end;
-
-procedure TMainForm.StyleMetroGreenActionExecute(Sender: TObject);
-begin
-  StyleName := STYLENAME_METRO_GREEN;
-end;
-
-procedure TMainForm.StyleRubyGraphiteActionExecute(Sender: TObject);
-begin
-  StyleName := STYLENAME_RUBY_GRAPHITE;
-end;
-
-procedure TMainForm.StyleSaphireKamriActionExecute(Sender: TObject);
-begin
-  StyleName := STYLENAME_SAPPHIRE_KAMRI;
-end;
-
-procedure TMainForm.StyleSlateClassicoActionExecute(Sender: TObject);
-begin
-  StyleName := STYLENAME_SLATE_CLASSICO;
-end;
-
-procedure TMainForm.StyleSmokeyQuartzKamriActionExecute(Sender: TObject);
-begin
-  StyleName := STYLENAME_SMOKEY_QUARTZ_KAMRI;
-end;
-
-procedure TMainForm.StyleTurquoiseGrayActionExecute(Sender: TObject);
-begin
-  StyleName := STYLENAME_TURUOISE_GRAY;
-end;
-
-procedure TMainForm.StyleWindowsActionExecute(Sender: TObject);
-begin
-  StyleName := STYLENAME_WINDOWS;
+      Action := TAction.Create(ActionManager);
+      Action.Name := StringReplace(StyleInfo.Name, ' ', '', [rfReplaceAll]) + 'StyleSelectAction';
+      Action.Caption := FileName;
+      Action.OnExecute := SelectStyleActionExecute;
+      Action.Checked :=  TStyleManager.ActiveStyle.Name = StyleInfo.Name;
+      ActionClientItem.Action := Action;
+      ActionClientItem.Caption := StyleInfo.Name;
+    end;
+  end;
+  { Windows }
+  ActionClientItem := GetActionClientItem(VIEW_MENU_ITEMINDEX, VIEW_STYLE_MENU_ITEMINDEX);
+  ActionClientItem := ActionClientItem.Items.Add;
+  Action := TAction.Create(ActionManager);
+  Action.Name := 'WindowsStyleSelectAction';
+  Action.Caption := STYLENAME_WINDOWS;
+  Action.OnExecute := SelectStyleActionExecute;
+  Action.Checked :=  TStyleManager.ActiveStyle.Name = STYLENAME_WINDOWS;
+  ActionClientItem.Action := Action;
 end;
 
 end.

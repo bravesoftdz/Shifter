@@ -31,7 +31,7 @@ implementation
 {$R *.DFM}
 
 uses
-  Common;
+  StyleHooks, Common;
 
 var
   FYourNameDialog: TYourNameDialog;
@@ -41,7 +41,7 @@ begin
   if FYourNameDialog = nil then
     Application.CreateForm(TYourNameDialog, FYourNameDialog);
   Result := FYourNameDialog;
-  Common.SetStyledFormSize(Result);
+  StyleHooks.SetStyledFormSize(Result);
 end;
 
 procedure TYourNameDialog.FormDestroy(Sender: TObject);
