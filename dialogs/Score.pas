@@ -41,7 +41,7 @@ function ScoreDialog: TScoreDialog;
 
 implementation
 
-{$R *.DFM}
+{$R *.dfm}
 
 uses
   Common, StyleHooks, YourName, BigIni, Vcl.Themes;

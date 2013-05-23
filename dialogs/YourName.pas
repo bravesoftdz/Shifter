@@ -28,7 +28,7 @@ function YourNameDialog: TYourNameDialog;
 
 implementation
 
-{$R *.DFM}
+{$R *.dfm}
 
 uses
   StyleHooks, Common;

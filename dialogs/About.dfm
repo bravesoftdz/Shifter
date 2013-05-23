@@ -4,8 +4,8 @@ object AboutDialog: TAboutDialog
   BorderIcons = []
   BorderStyle = bsSingle
   Caption = 'About Shifter'
-  ClientHeight = 214
-  ClientWidth = 306
+  ClientHeight = 215
+  ClientWidth = 326
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -18,30 +18,15 @@ object AboutDialog: TAboutDialog
   OnClose = FormClose
   OnDestroy = FormDestroy
   DesignSize = (
-    306
-    214)
+    326
+    215)
   PixelsPerInch = 96
   TextHeight = 13
-  object CopyrightLabel: TLabel
-    Left = 50
-    Top = 124
-    Width = 115
-    Height = 13
-    Anchors = [akLeft, akBottom]
-    Caption = 'Copyright '#169' 2004-2012'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -11
-    Font.Name = 'Tahoma'
-    Font.Style = []
-    ParentFont = False
-  end
   object ThanksToLabel: TLabel
-    Left = 50
-    Top = 143
+    Left = 54
+    Top = 124
     Width = 47
     Height = 13
-    Anchors = [akLeft, akBottom]
     Caption = 'Thanks to'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -50,9 +35,21 @@ object AboutDialog: TAboutDialog
     Font.Style = []
     ParentFont = False
   end
+  object Label1: TLabel
+    Left = -39
+    Top = 151
+    Width = 403
+    Height = 13
+    Alignment = taCenter
+    Anchors = [akLeft, akRight, akBottom]
+    AutoSize = False
+    Caption = 'Copyright '#169' 2004-2013 Lasse Rautiainen. All Rights Reserved.'
+    ExplicitTop = 163
+    ExplicitWidth = 383
+  end
   object OKButton: TButton
-    Left = 218
-    Top = 175
+    Left = 238
+    Top = 178
     Width = 75
     Height = 25
     Anchors = [akRight, akBottom]
@@ -65,15 +62,56 @@ object AboutDialog: TAboutDialog
   object TopPanel: TPanel
     Left = -10
     Top = -2
-    Width = 334
+    Width = 354
     Height = 119
     Anchors = [akLeft, akTop, akRight]
     BevelOuter = bvNone
     Color = clWhite
     ParentBackground = False
     TabOrder = 1
-    object KayttovaltuusImage: TImage
-      Left = 18
+    object OhjelmanNimiLabel: TLabel
+      Left = 64
+      Top = 11
+      Width = 78
+      Height = 33
+      Caption = 'Shifter'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -27
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      Transparent = True
+    end
+    object VersionLabel: TLabel
+      Left = 64
+      Top = 45
+      Width = 117
+      Height = 16
+      Caption = 'Version %s (%d-bit)'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object OSLabel: TLabel
+      Left = 64
+      Top = 79
+      Width = 39
+      Height = 13
+      Caption = 'OSLabel'
+    end
+    object MemoryAvailableLabel: TLabel
+      Left = 64
+      Top = 99
+      Width = 166
+      Height = 13
+      Caption = 'Memory Available to Windows: %s'
+    end
+    object OraBoneImage: TImage
+      Left = 22
       Top = 12
       Width = 32
       Height = 32
@@ -4605,83 +4643,30 @@ object AboutDialog: TAboutDialog
         0000800100000000000000000000000000000000000000000000000000000000
         000000000000000000000000000080010000C0030000E0070000}
       Stretch = True
-      Transparent = True
       IsControl = True
     end
-    object OhjelmanNimiLabel: TLabel
-      Left = 60
-      Top = 12
-      Width = 78
-      Height = 33
-      Caption = 'Shifter'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -27
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentFont = False
-      Transparent = True
-    end
-    object VersionLabel: TLabel
-      Left = 60
-      Top = 46
-      Width = 65
-      Height = 16
-      Caption = 'Version %s'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentFont = False
-    end
-    object OSLabel: TLabel
-      Left = 60
-      Top = 80
-      Width = 39
-      Height = 13
-      Caption = 'OSLabel'
-    end
-    object MemoryAvailableLabel: TLabel
-      Left = 60
-      Top = 100
-      Width = 166
-      Height = 13
-      Caption = 'Memory Available to Windows: %s'
-    end
-  end
-  object BoneCodeLinkLabel: TLinkLabel
-    Left = 170
-    Top = 124
-    Width = 85
-    Height = 17
-    Anchors = [akLeft, akBottom]
-    Caption = '<a href="http://www.bonecode.com">Lasse Rautiainen</a>'
-    TabOrder = 2
-    OnLinkClick = LinkClick
   end
   object MiddlePanel: TPanel
     Left = -6
     Top = 117
-    Width = 312
+    Width = 332
     Height = 1
     Anchors = [akLeft, akTop, akRight]
     BevelOuter = bvNone
     Color = cl3DLight
     ParentBackground = False
-    TabOrder = 3
+    TabOrder = 2
   end
   object CodeGearLinkLabel: TLinkLabel
-    Left = 101
-    Top = 143
+    Left = 107
+    Top = 124
     Width = 187
     Height = 17
-    Anchors = [akLeft, akBottom]
     AutoSize = False
     Caption = 
       '<a href="http://www.embarcadero.com/products/rad-studio/">Embarc' +
-      'adero RAD Studio XE2</a>'
-    TabOrder = 4
+      'adero RAD Studio</a>'
+    TabOrder = 3
     OnLinkClick = LinkClick
   end
 end

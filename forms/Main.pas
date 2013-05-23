@@ -7,7 +7,7 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ComCtrls, Vcl.ExtCtrls, Vcl.Menus, Vcl.StdCtrls,
   ThdTimer, BlockPanel, BCProgressPanel, Vcl.ActnList, Vcl.PlatformDefaultStyleActnCtrls,
   Vcl.ActnMan, Vcl.ToolWin, Vcl.ActnCtrls, Vcl.ActnMenus, Vcl.StdStyleActnCtrls, Vcl.ImgList,
-  BCImageList, Vcl.XPMan;
+  BCImageList;
 
 const
   INTERVAL_MSEC = 20; { fps = 1000/INTERVAL (INTERVAL 20 -> fps 50) }
@@ -31,7 +31,6 @@ type
     AboutAction: TAction;
     ImageList: TImageList;
     MenuImageList: TBCImageList;
-    XPManifest: TXPManifest;
     SelectStyleAction: TAction;
     procedure FormCreate(Sender: TObject);
     procedure FormCanResize(Sender: TObject; var NewWidth,

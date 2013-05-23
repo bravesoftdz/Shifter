@@ -17,7 +17,8 @@ uses
   Common in '..\..\Common\units\Common.pas',
   DownloadURL in '..\..\Common\dialogs\DownloadURL.pas' {DownloadURLDialog},
   CommonDialogs in '..\..\Common\units\CommonDialogs.pas',
-  StyleHooks in '..\..\Common\units\StyleHooks.pas';
+  StyleHooks in '..\..\Common\units\StyleHooks.pas',
+  Encoding in '..\..\Common\units\Encoding.pas';
 
 {$R *.res}
 
