@@ -168,11 +168,12 @@ type
 implementation
 
 uses
-  Common;
+  Common, Math;
 
 { TBlock }
 
 constructor TBlock.Create(AOwner: TComponent);
+
   function RandomBlockType: TBlockType;
   var
     Seed1, Seed2: Integer;
@@ -182,8 +183,10 @@ constructor TBlock.Create(AOwner: TComponent);
     Seed2 := Random(400);
     if Seed1 = Seed2 then
       Result := btChanger
-    else Result := btSolid
+    else
+      Result := btSolid
   end;
+
 begin
   inherited;
   X := 0;
@@ -191,7 +194,7 @@ begin
   FSelected := False;
   FRemove := False;
   FBlockType := RandomBlockType;
-  if (AOwner is TBlockPanel) then
+  if AOwner is TBlockPanel then
     FParent := TBlockPanel(AOwner);
 end;
 
@@ -227,16 +230,14 @@ begin
   if Selected or
      ((Parent.FGameState = gsWaitingForSecondSelection) and IsPointInRect and
      Parent.IsMouseOverSecondSelection(Parent.FMouseX, Parent.FMouseY)) then
+  with Canvas do
   begin
-    With Canvas do
-    begin
-      Pen.Width := 2;
-      Pen.Style := psInsideFrame;
-      Pen.Color := clRed;
-      Rectangle(SelectionRect);
-      Pen.Style := psSolid;
-      Pen.Width := 1;
-    end;
+    Pen.Width := 2;
+    Pen.Style := psInsideFrame;
+    Pen.Color := clRed;
+    Rectangle(SelectionRect);
+    Pen.Style := psSolid;
+    Pen.Width := 1;
   end;
 
   if FBlockType = btChanger then
@@ -304,7 +305,6 @@ begin
 
   Result := True;
 end;
-
 
 { TBlockPanel }
 
@@ -790,6 +790,7 @@ end;
 function TBlockPanel.RemoveBlocks2: Boolean;
 var
   SelectedBlock1, SelectedBlock2: TBlock;
+
   procedure MarkHorizontalBlocks(Block: TBlock; Selection: Integer);
   var
     i, j, k, Count: Integer;
@@ -851,7 +852,6 @@ begin
   MarkHorizontalBlocks(SelectedBlock2, 1);
   { remove vertical SelectedBlock2 }
   MarkVerticalBlocks(SelectedBlock2, 1);
-
   SetSelectionsDisabled;
 
   Result := RemoveMarkedBlocks;

@@ -32,6 +32,7 @@ type
     ImageList: TImageList;
     MenuImageList: TBCImageList;
     SelectStyleAction: TAction;
+    ViewStyleAction: TAction;
     procedure FormCreate(Sender: TObject);
     procedure FormCanResize(Sender: TObject; var NewWidth,
       NewHeight: Integer; var Resize: Boolean);
@@ -42,6 +43,7 @@ type
     procedure ExitActionExecute(Sender: TObject);
     procedure AboutActionExecute(Sender: TObject);
     procedure SelectStyleActionExecute(Sender: TObject);
+    procedure ViewStyleActionExecute(Sender: TObject);
   private
     { Private declarations }
     BlockPanel: TBlockPanel;
@@ -141,7 +143,6 @@ begin
   end;
 end;
 
-
 procedure TMainForm.OnRestore(Sender: TObject);
 begin
   BlockPanel.Idle := False;
@@ -150,12 +151,12 @@ end;
 procedure TMainForm.OnGameStartWaiting(Sender: TObject);
 begin
   ThreadedTimer.Enabled := True;
-  ThreadedTimerTimer(Sender)
+  ThreadedTimerTimer(Sender);
 end;
 
 procedure TMainForm.OnGameEndWaiting(Sender: TObject);
 begin
-  ThreadedTimer.Enabled := False
+  ThreadedTimer.Enabled := False;
 end;
 
 function TMainForm.GetActionClientItem(MenuItemIndex, SubMenuItemIndex: Integer): TActionClientItem;
@@ -166,7 +167,7 @@ end;
 
 procedure TMainForm.SelectStyleActionExecute(Sender: TObject);
 var
-  i: Integer;
+  i, j: Integer;
   ActionCaption: string;
   Action: TAction;
   ActionClientItem: TActionClientItem;
@@ -195,7 +196,8 @@ begin
 
   ActionClientItem := GetActionClientItem(VIEW_MENU_ITEMINDEX, VIEW_STYLE_MENU_ITEMINDEX);
   for i := 0 to ActionClientItem.Items.Count - 1 do
-    TAction(ActionClientItem.Items[i].Action).Checked := False;
+    for j := 0 to ActionClientItem.Items[i].Items.Count - 1 do
+      TAction(ActionClientItem.Items[i].Items[j].Action).Checked := False;
   Action.Checked := True;
 end;
 
@@ -282,6 +284,11 @@ begin
   end;
 end;
 
+procedure TMainForm.ViewStyleActionExecute(Sender: TObject);
+begin
+  { dummy action }
+end;
+
 procedure TMainForm.StartNewGame;
 begin
   BlockPanel.DemoRunning := False;
@@ -341,6 +348,71 @@ end;
 
 procedure TMainForm.CreateStyleMenu;
 var
+  FilePath, FileName, StyleName, ActionCaption: string;
+  StyleInfo: TStyleInfo;
+  ActionClientItem: TActionClientItem;
+  Action: TAction;
+
+  procedure SetMenuItem;
+  var
+    i: Integer;
+  begin
+    ActionClientItem := GetActionClientItem(VIEW_MENU_ITEMINDEX, VIEW_STYLE_MENU_ITEMINDEX);
+    { alphabet submenu }
+    for i := 0 to ActionClientItem.Items.Count - 1 do
+    begin
+      ActionCaption := StringReplace(ActionClientItem.Items[i].Caption, '&', '', [rfReplaceAll]);
+      if ActionCaption = StyleName[1] then
+      begin
+        ActionClientItem := ActionClientItem.Items[i];
+        Break;
+      end;
+    end;
+    ActionCaption := StringReplace(ActionClientItem.Caption, '&', '', [rfReplaceAll]);
+    if ActionCaption <> StyleName[1] then
+    begin
+      ActionClientItem := ActionClientItem.Items.Add;
+      ActionClientItem.Caption := StyleName[1];
+    end;
+    ActionClientItem := ActionClientItem.Items.Add;
+  end;
+
+begin
+  ViewStyleAction.Enabled := False;
+  FilePath := IncludeTrailingPathDelimiter(Format('%s%s', [ExtractFilePath(ParamStr(0)), 'Styles']));
+  if not DirectoryExists(FilePath) then
+    Exit;
+
+  for FileName in TDirectory.GetFiles(FilePath, '*.vsf') do
+  begin
+    if TStyleManager.IsValidStyle(FileName, StyleInfo) then
+    begin
+      StyleName := ExtractFileName(FileName);
+      { Style menu item }
+      SetMenuItem;
+      Action := TAction.Create(ActionManager);
+      Action.Name := StringReplace(StyleInfo.Name, ' ', '', [rfReplaceAll]) + 'StyleSelectAction';
+      Action.Caption := FileName;
+      Action.OnExecute := SelectStyleActionExecute;
+      Action.Checked :=  TStyleManager.ActiveStyle.Name = StyleInfo.Name;
+      ActionClientItem.Action := Action;
+      ActionClientItem.Caption := StyleInfo.Name;
+    end;
+  end;
+  { Windows }
+  StyleName := 'Windows.vsf';
+  SetMenuItem;
+  Action := TAction.Create(ActionManager);
+  Action.Name := 'WindowsStyleSelectAction';
+  Action.Caption := STYLENAME_WINDOWS;
+  Action.OnExecute := SelectStyleActionExecute;
+  Action.Checked :=  TStyleManager.ActiveStyle.Name = STYLENAME_WINDOWS;
+  ActionClientItem.Action := Action;
+  ViewStyleAction.Enabled := True;
+end;
+    (*
+procedure TMainForm.CreateStyleMenu;
+var
   FilePath, FileName: string;
   StyleInfo: TStyleInfo;
   ActionClientItem: TActionClientItem;
@@ -375,6 +447,6 @@ begin
   Action.OnExecute := SelectStyleActionExecute;
   Action.Checked :=  TStyleManager.ActiveStyle.Name = STYLENAME_WINDOWS;
   ActionClientItem.Action := Action;
-end;
+end; *)
 
 end.
