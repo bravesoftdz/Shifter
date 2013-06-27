@@ -75,7 +75,7 @@ var
 implementation
 
 uses
-  Common, System.Math, Score, About, Vcl.Themes, BigIni, StyleHooks, System.IOUtils;
+  Common, System.Math, Score, About, Vcl.Themes, BigIni, StyleHooks, System.IOUtils, System.Types;
 
 const
   VIEW_MENU_ITEMINDEX = 1;
