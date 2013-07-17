@@ -3,7 +3,7 @@ unit About;
 interface
 
 uses
-  System.SysUtils, Winapi.Windows, Winapi.Messages, System.Classes, Vcl.Graphics, Dlg,
+  System.SysUtils, Winapi.Windows, Winapi.Messages, System.Classes, Vcl.Graphics, BCDialogs.Dlg,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls, Vcl.Imaging.pngimage;
 
 type
@@ -34,7 +34,7 @@ implementation
 {$R *.dfm}
 
 uses
-  Common, StyleHooks;
+  BCCommon.StyleHooks, BCCommon.FileUtils;
 
 var
   FAboutDialog: TAboutDialog;
@@ -44,14 +44,14 @@ begin
   if FAboutDialog = nil then
     Application.CreateForm(TAboutDialog, FAboutDialog);
   Result := FAboutDialog;
-  StyleHooks.SetStyledFormSize(Result);
+  SetStyledFormSize(Result);
 end;
 
 procedure TAboutDialog.Open;
 var
   MemoryStatus: TMemoryStatusEx;
 begin
-  VersionLabel.Caption := Format(VersionLabel.Caption, [Common.GetFileVersion(Application.ExeName),
+  VersionLabel.Caption := Format(VersionLabel.Caption, [BCCommon.FileUtils.GetFileVersion(Application.ExeName),
     {$IFDEF WIN64}64{$ELSE}32{$ENDIF}]);
   { initialize the structure }
   FillChar(MemoryStatus, SizeOf(MemoryStatus), 0);

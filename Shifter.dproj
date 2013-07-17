@@ -8,7 +8,7 @@
         <AppType>Application</AppType>
         <FrameworkType>VCL</FrameworkType>
         <ProjectVersion>14.6</ProjectVersion>
-        <Platform Condition="'$(Platform)'==''">Win64</Platform>
+        <Platform Condition="'$(Platform)'==''">Win32</Platform>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Config)'=='Base' or '$(Base)'!=''">
         <Base>true</Base>
@@ -160,20 +160,20 @@
             <Form>AboutForm</Form>
         </DCCReference>
         <DCCReference Include="units\BlockPanel.pas"/>
-        <DCCReference Include="..\..\Common\units\Language.pas">
+        <DCCReference Include="..\..\Common\units\BCCommon.LanguageStrings.pas">
             <Form>LanguageDataModule</Form>
         </DCCReference>
         <DCCReference Include="..\..\Common\units\BigIni.pas"/>
-        <DCCReference Include="..\..\Common\dialogs\Dlg.pas">
+        <DCCReference Include="..\..\Common\dialogs\BCDialogs.Dlg.pas">
             <Form>Dialog</Form>
         </DCCReference>
-        <DCCReference Include="..\..\Common\units\Common.pas"/>
-        <DCCReference Include="..\..\Common\dialogs\DownloadURL.pas">
+        <DCCReference Include="..\..\Common\units\BCCommon.pas"/>
+        <DCCReference Include="..\..\Common\dialogs\BCDialogs.DownloadURL.pas">
             <Form>DownloadURLDialog</Form>
         </DCCReference>
-        <DCCReference Include="..\..\Common\units\CommonDialogs.pas"/>
-        <DCCReference Include="..\..\Common\units\StyleHooks.pas"/>
-        <DCCReference Include="..\..\Common\units\Encoding.pas"/>
+        <DCCReference Include="..\..\Common\units\BCCommon.Dialogs.pas"/>
+        <DCCReference Include="..\..\Common\units\BCCommon.StyleHooks.pas"/>
+        <DCCReference Include="..\..\Common\units\BCCommon.Encoding.pas"/>
         <BuildConfiguration Include="Debug">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

@@ -11,14 +11,14 @@ uses
   BlockPanel in 'units\BlockPanel.pas',
   Vcl.Themes,
   Vcl.Styles,
-  Language in '..\..\Common\units\Language.pas' {LanguageDataModule},
+  BCCommon.LanguageStrings in '..\..\Common\units\BCCommon.LanguageStrings.pas' {LanguageDataModule},
   BigIni in '..\..\Common\units\BigIni.pas',
-  Dlg in '..\..\Common\dialogs\Dlg.pas' {Dialog},
-  Common in '..\..\Common\units\Common.pas',
-  DownloadURL in '..\..\Common\dialogs\DownloadURL.pas' {DownloadURLDialog},
-  CommonDialogs in '..\..\Common\units\CommonDialogs.pas',
-  StyleHooks in '..\..\Common\units\StyleHooks.pas',
-  Encoding in '..\..\Common\units\Encoding.pas';
+  BCDialogs.Dlg in '..\..\Common\dialogs\BCDialogs.Dlg.pas' {Dialog},
+  BCCommon in '..\..\Common\units\BCCommon.pas',
+  BCDialogs.DownloadURL in '..\..\Common\dialogs\BCDialogs.DownloadURL.pas' {DownloadURLDialog},
+  BCCommon.Dialogs in '..\..\Common\units\BCCommon.Dialogs.pas',
+  BCCommon.StyleHooks in '..\..\Common\units\BCCommon.StyleHooks.pas',
+  BCCommon.Encoding in '..\..\Common\units\BCCommon.Encoding.pas';
 
 {$R *.res}
 

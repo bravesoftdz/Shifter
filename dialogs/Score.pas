@@ -3,8 +3,8 @@ unit Score;
 interface
 
 uses
-  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs, Dlg,
-  ExtCtrls, StdCtrls, Vcl.Grids, JvExGrids, JvStringGrid, BCStringGrid, Vcl.ActnList;
+  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs, BCDialogs.Dlg,
+  ExtCtrls, StdCtrls, Vcl.Grids, JvExGrids, JvStringGrid, BCControls.StringGrid, Vcl.ActnList, System.Actions;
 
 const
   SCORECOLUMNS = 5;
@@ -44,7 +44,7 @@ implementation
 {$R *.dfm}
 
 uses
-  Common, StyleHooks, YourName, BigIni, Vcl.Themes;
+  BCCommon.StyleHooks, YourName, BigIni, Vcl.Themes;
 
 var
   FScoreDialog: TScoreDialog;
@@ -54,7 +54,7 @@ begin
   if FScoreDialog = nil then
     Application.CreateForm(TScoreDialog, FScoreDialog);
   Result := FScoreDialog;
-  StyleHooks.SetStyledFormSize(Result);
+  SetStyledFormSize(Result);
 end;
 
 procedure TScoreDialog.FormDestroy(Sender: TObject);
