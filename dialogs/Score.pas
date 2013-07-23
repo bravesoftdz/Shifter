@@ -44,7 +44,7 @@ implementation
 {$R *.dfm}
 
 uses
-  BCCommon.StyleHooks, YourName, BigIni, Vcl.Themes;
+  BCCommon.StyleHooks, BCCommon.FileUtils, BCCommon.StringUtils, BCCommon.Messages, YourName, BigIni, Vcl.Themes;
 
 var
   FScoreDialog: TScoreDialog;
@@ -80,14 +80,14 @@ procedure TScoreDialog.WriteIniFile;
 var
   i: Integer;
 begin
-  with TBigIniFile.Create(Common.GetINIFilename) do
+  with TBigIniFile.Create(GetINIFilename) do
   try
     EraseSection(SECTION_SCORETABLE);
     for i := 1 to SCOREROWS do
     begin
       if StringGrid.Cells[4, i] <> '' then
         WriteString(SECTION_SCORETABLE, IntToStr(i),
-          Common.EncryptString(Format('%s;%s;%s;%s', [StringGrid.Cells[1, i],
+          EncryptString(Format('%s;%s;%s;%s', [StringGrid.Cells[1, i],
           StringGrid.Cells[2, i], StringGrid.Cells[3, i], StringGrid.Cells[4, i]])));
     end;
   finally
@@ -103,12 +103,12 @@ var
 
 begin
   ScoreTable := TStringList.Create;
-  with TBigIniFile.Create(Common.GetINIFilename) do
+  with TBigIniFile.Create(GetINIFilename) do
   try
     ReadSectionValues(SECTION_SCORETABLE, ScoreTable);
     for i := 0 to ScoreTable.Count - 1 do
     begin
-      s := Common.DecryptString(GetTextAfterChar('=', ScoreTable.Strings[i]));
+      s := DecryptString(GetTextAfterChar('=', ScoreTable.Strings[i]));
       StringGrid.Cells[0, i + 1] := IntToStr(i + 1); { position }
       StringGrid.Cells[1, i + 1] := GetNextToken(';', s);
       s := RemoveTokenFromStart(';', s);
@@ -188,7 +188,7 @@ end;
 
 procedure TScoreDialog.ResetRecordsActionExecute(Sender: TObject);
 begin
-  if Common.AskYesOrNo(MSGASKAREYOUSURE) then
+  if AskYesOrNo(MSGASKAREYOUSURE) then
     ClearScores;
 end;
 

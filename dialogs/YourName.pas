@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  StdCtrls, Vcl.ExtCtrls, Dlg;
+  StdCtrls, Vcl.ExtCtrls, BCDialogs.Dlg;
 
 type
   TYourNameDialog = class(TDialog)
@@ -31,7 +31,7 @@ implementation
 {$R *.dfm}
 
 uses
-  BCCommon.StyleHooks;
+  BCCommon.StyleHooks, BCCommon.Messages;
 
 var
   FYourNameDialog: TYourNameDialog;
@@ -68,7 +68,7 @@ begin
   if Trim(NameEdit.Text) = '' then
   begin
     NameEdit.SetFocus;
-    Common.ShowErrorMessage('Enter name.');
+    BCCommon.Messages.ShowErrorMessage('Enter name.');
     Exit;
   end;
   ModalResult := mrOk;

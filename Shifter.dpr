@@ -18,14 +18,17 @@ uses
   BCDialogs.DownloadURL in '..\..\Common\dialogs\BCDialogs.DownloadURL.pas' {DownloadURLDialog},
   BCCommon.Dialogs in '..\..\Common\units\BCCommon.Dialogs.pas',
   BCCommon.StyleHooks in '..\..\Common\units\BCCommon.StyleHooks.pas',
-  BCCommon.Encoding in '..\..\Common\units\BCCommon.Encoding.pas';
+  BCCommon.Encoding in '..\..\Common\units\BCCommon.Encoding.pas',
+  BCCommon.Messages in '..\..\Common\units\BCCommon.Messages.pas',
+  BCCommon.FileUtils in '..\..\Common\units\BCCommon.FileUtils.pas',
+  BCCommon.StringUtils in '..\..\Common\units\BCCommon.StringUtils.pas';
 
 {$R *.res}
 
 var
   StyleFilename: string;
 begin
-  with TBigIniFile.Create(Common.GetINIFilename) do
+  with TBigIniFile.Create(GetINIFilename) do
   try
     if SectionExists('Preferences') then
       EraseSection('Preferences'); { depricated }

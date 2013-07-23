@@ -75,7 +75,8 @@ var
 implementation
 
 uses
-  Common, System.Math, Score, About, Vcl.Themes, BigIni, StyleHooks, System.IOUtils, System.Types;
+  BCCommon, System.Math, Score, About, Vcl.Themes, BigIni, BCCommon.StyleHooks, BCCommon.FileUtils, System.IOUtils,
+  BCCommon.Messages, System.Types;
 
 const
   VIEW_MENU_ITEMINDEX = 1;
@@ -176,7 +177,7 @@ begin
   Action := Sender as TAction;
   ActionCaption := StringReplace(Action.Caption, '&', '', [rfReplaceAll]);
 
-  if Action.Caption = StyleHooks.STYLENAME_WINDOWS then
+  if Action.Caption = STYLENAME_WINDOWS then
     TStyleManager.TrySetStyle(ActionCaption)
   else
   if TStyleManager.IsValidStyle(ActionCaption, StyleInfo) then
@@ -187,7 +188,7 @@ begin
       TStyleManager.SetStyle(TStyleManager.LoadFromFile(ActionCaption));
   end;
 
-  with TBigIniFile.Create(Common.GetINIFilename) do
+  with TBigIniFile.Create(GetINIFilename) do
   try
     WriteString('Options', 'StyleFilename', ExtractFilename(ActionCaption));
   finally
@@ -259,7 +260,7 @@ end;
 
 procedure TMainForm.ExitActionExecute(Sender: TObject);
 begin
-  if Common.AskYesOrNo(MSG_ASKCLOSING) then
+  if AskYesOrNo(MSG_ASKCLOSING) then
     Close;
 end;
 
@@ -276,7 +277,7 @@ begin
     begin
       ThreadedTimer.Enabled := False;
       ScoreDialog.Open(BlockPanel.Score, BlockPanel.Level);
-      if Common.AskYesOrNo(MSG_ASKNEWGAME) then
+      if AskYesOrNo(MSG_ASKNEWGAME) then
         StartNewGame
       else
         Close
@@ -298,7 +299,7 @@ end;
 procedure TMainForm.NewGameActionExecute(Sender: TObject);
 begin
   if not BlockPanel.DemoRunning then
-    if not Common.AskYesOrNo(MSG_ASKAREYOUSURE) then
+    if not AskYesOrNo(MSG_ASKAREYOUSURE) then
       Exit;
 
   StartNewGame;

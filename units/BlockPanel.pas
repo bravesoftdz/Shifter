@@ -168,7 +168,7 @@ type
 implementation
 
 uses
-  Common, Math;
+  BCCommon, BCCommon.Messages, Math;
 
 { TBlock }
 
@@ -1221,7 +1221,7 @@ begin
       begin
         if not CheckPossibleMoves then
         begin
-          Common.ShowMessage('No more moves.');
+          BCCommon.Messages.ShowMessage('No more moves.');
           FGameState := gsStartLevel
         end
         else

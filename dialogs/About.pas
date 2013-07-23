@@ -34,7 +34,7 @@ implementation
 {$R *.dfm}
 
 uses
-  BCCommon.StyleHooks, BCCommon.FileUtils;
+  BCCommon.StyleHooks, BCCommon.FileUtils, BCCommon;
 
 var
   FAboutDialog: TAboutDialog;
