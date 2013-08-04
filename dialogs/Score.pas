@@ -44,7 +44,7 @@ implementation
 {$R *.dfm}
 
 uses
-  BCCommon.StyleHooks, BCCommon.FileUtils, BCCommon.StringUtils, BCCommon.Messages, YourName, BigIni, Vcl.Themes;
+  BCCommon.StyleUtils, BCCommon.FileUtils, BCCommon.StringUtils, BCCommon.Messages, YourName, BigIni, Vcl.Themes;
 
 var
   FScoreDialog: TScoreDialog;

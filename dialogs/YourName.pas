@@ -31,7 +31,7 @@ implementation
 {$R *.dfm}
 
 uses
-  BCCommon.StyleHooks, BCCommon.Messages;
+  BCCommon.StyleUtils, BCCommon.Messages;
 
 var
   FYourNameDialog: TYourNameDialog;

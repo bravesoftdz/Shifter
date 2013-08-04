@@ -172,7 +172,7 @@
             <Form>DownloadURLDialog</Form>
         </DCCReference>
         <DCCReference Include="..\..\Common\units\BCCommon.Dialogs.pas"/>
-        <DCCReference Include="..\..\Common\units\BCCommon.StyleHooks.pas"/>
+        <DCCReference Include="..\..\Common\units\BCCommon.StyleUtils.pas"/>
         <DCCReference Include="..\..\Common\units\BCCommon.Encoding.pas"/>
         <DCCReference Include="..\..\Common\units\BCCommon.Messages.pas"/>
         <DCCReference Include="..\..\Common\units\BCCommon.FileUtils.pas"/>

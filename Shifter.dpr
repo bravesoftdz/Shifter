@@ -17,7 +17,7 @@ uses
   BCCommon in '..\..\Common\units\BCCommon.pas',
   BCDialogs.DownloadURL in '..\..\Common\dialogs\BCDialogs.DownloadURL.pas' {DownloadURLDialog},
   BCCommon.Dialogs in '..\..\Common\units\BCCommon.Dialogs.pas',
-  BCCommon.StyleHooks in '..\..\Common\units\BCCommon.StyleHooks.pas',
+  BCCommon.StyleUtils in '..\..\Common\units\BCCommon.StyleUtils.pas',
   BCCommon.Encoding in '..\..\Common\units\BCCommon.Encoding.pas',
   BCCommon.Messages in '..\..\Common\units\BCCommon.Messages.pas',
   BCCommon.FileUtils in '..\..\Common\units\BCCommon.FileUtils.pas',
