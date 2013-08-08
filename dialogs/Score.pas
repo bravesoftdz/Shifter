@@ -108,7 +108,7 @@ begin
     ReadSectionValues(SECTION_SCORETABLE, ScoreTable);
     for i := 0 to ScoreTable.Count - 1 do
     begin
-      s := DecryptString(GetTextAfterChar('=', ScoreTable.Strings[i]));
+      s := DecryptString(RemoveTokenFromStart('=', ScoreTable.Strings[i]));
       StringGrid.Cells[0, i + 1] := IntToStr(i + 1); { position }
       StringGrid.Cells[1, i + 1] := GetNextToken(';', s);
       s := RemoveTokenFromStart(';', s);

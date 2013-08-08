@@ -4,13 +4,13 @@ interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  StdCtrls, Vcl.ExtCtrls, BCDialogs.Dlg;
+  StdCtrls, Vcl.ExtCtrls, BCDialogs.Dlg, JvExStdCtrls, JvEdit, BCControls.Edit;
 
 type
   TYourNameDialog = class(TDialog)
     Panel1: TPanel;
     NameLabel: TLabel;
-    NameEdit: TEdit;
+    NameEdit: TBCEdit;
     Panel2: TPanel;
     OKButton: TButton;
     procedure OKButtonClick(Sender: TObject);

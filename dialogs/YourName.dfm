@@ -39,7 +39,7 @@ object YourNameDialog: TYourNameDialog
       Margins.Bottom = 4
       Caption = 'Name'
     end
-    object NameEdit: TEdit
+    object NameEdit: TBCEdit
       Left = 85
       Top = 12
       Width = 113
@@ -51,7 +51,16 @@ object YourNameDialog: TYourNameDialog
       Align = alRight
       MaxLength = 12
       TabOrder = 0
+      Text = ''
       OnKeyPress = NameEditKeyPress
+      EnterToTab = False
+      OnlyNumbers = False
+      NumbersWithDots = False
+      NumbersWithSpots = False
+      ErrorColor = 14803455
+      NumbersAllowNegative = False
+      EditColor = clInfoBk
+      UseColoring = True
       ExplicitHeight = 21
     end
   end
