@@ -59,8 +59,6 @@ object YourNameDialog: TYourNameDialog
       NumbersWithSpots = False
       ErrorColor = 14803455
       NumbersAllowNegative = False
-      EditColor = clInfoBk
-      UseColoring = True
       ExplicitHeight = 21
     end
   end
