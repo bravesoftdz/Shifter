@@ -168,7 +168,7 @@ type
 implementation
 
 uses
-  BCCommon, BCCommon.Messages, Math;
+  BCCommon.Lib, BCCommon.Messages, Math;
 
 { TBlock }
 

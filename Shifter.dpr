@@ -14,7 +14,7 @@ uses
   BCCommon.LanguageStrings in '..\..\Common\units\BCCommon.LanguageStrings.pas' {LanguageDataModule},
   BigIni in '..\..\Common\units\BigIni.pas',
   BCDialogs.Dlg in '..\..\Common\dialogs\BCDialogs.Dlg.pas' {Dialog},
-  BCCommon in '..\..\Common\units\BCCommon.pas',
+  BCCommon.Lib in '..\..\Common\units\BCCommon.Lib.pas',
   BCDialogs.DownloadURL in '..\..\Common\dialogs\BCDialogs.DownloadURL.pas' {DownloadURLDialog},
   BCCommon.Dialogs in '..\..\Common\units\BCCommon.Dialogs.pas',
   BCCommon.StyleUtils in '..\..\Common\units\BCCommon.StyleUtils.pas',

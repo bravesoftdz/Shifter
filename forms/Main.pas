@@ -75,7 +75,7 @@ var
 implementation
 
 uses
-  BCCommon, System.Math, Score, About, Vcl.Themes, BigIni, BCCommon.StyleUtils, BCCommon.FileUtils, System.IOUtils,
+  BCCommon.Lib, System.Math, Score, About, Vcl.Themes, BigIni, BCCommon.StyleUtils, BCCommon.FileUtils, System.IOUtils,
   BCCommon.Messages, System.Types;
 
 const

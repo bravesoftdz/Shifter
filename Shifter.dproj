@@ -167,7 +167,7 @@
         <DCCReference Include="..\..\Common\dialogs\BCDialogs.Dlg.pas">
             <Form>Dialog</Form>
         </DCCReference>
-        <DCCReference Include="..\..\Common\units\BCCommon.pas"/>
+        <DCCReference Include="..\..\Common\units\BCCommon.Lib.pas"/>
         <DCCReference Include="..\..\Common\dialogs\BCDialogs.DownloadURL.pas">
             <Form>DownloadURLDialog</Form>
         </DCCReference>
