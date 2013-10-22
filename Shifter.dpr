@@ -31,7 +31,7 @@ begin
   with TBigIniFile.Create(GetINIFilename) do
   try
     if SectionExists('Preferences') then
-      EraseSection('Preferences'); { depricated }
+      EraseSection('Preferences'); { deprecated }
     { Style }
     StyleFilename := ReadString('Options', 'StyleFilename', 'Windows');
   finally

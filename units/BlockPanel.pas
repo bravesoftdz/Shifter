@@ -3,7 +3,8 @@ unit BlockPanel;
 interface
 
 uses
-  Windows, ExtCtrls, Classes, Controls, Dialogs, Forms, Graphics, SysUtils, ThdTimer, Types;
+  Winapi.Windows, Vcl.ExtCtrls, System.Classes, Vcl.Controls, Vcl.Dialogs, Vcl.Forms, Vcl.Graphics, System.SysUtils,
+  ThdTimer, System.Types;
 
 type
   TGameState = (gsRunning, gsIdle, gsDemo, gsGameOver, gsInitialize, gsStartLevel, gsScrollBlocks,

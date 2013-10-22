@@ -51,7 +51,6 @@ object YourNameDialog: TYourNameDialog
       Align = alRight
       MaxLength = 12
       TabOrder = 0
-      Text = ''
       OnKeyPress = NameEditKeyPress
       EnterToTab = False
       OnlyNumbers = False
@@ -59,7 +58,6 @@ object YourNameDialog: TYourNameDialog
       NumbersWithSpots = False
       ErrorColor = 14803455
       NumbersAllowNegative = False
-      ExplicitHeight = 21
     end
   end
   object Panel2: TPanel

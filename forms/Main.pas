@@ -3,11 +3,10 @@ unit Main;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ComCtrls, Vcl.ExtCtrls, Vcl.Menus, Vcl.StdCtrls,
-  ThdTimer, BlockPanel, BCControls.ProgressPanel, Vcl.ActnList, Vcl.PlatformDefaultStyleActnCtrls,
-  Vcl.ActnMan, Vcl.ToolWin, Vcl.ActnCtrls, Vcl.ActnMenus, Vcl.StdStyleActnCtrls, Vcl.ImgList,
-  BCControls.ImageList, System.Actions;
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
+  Vcl.ComCtrls, Vcl.ExtCtrls, ThdTimer, BlockPanel, BCControls.ProgressPanel, Vcl.ActnList,
+  Vcl.PlatformDefaultStyleActnCtrls, Vcl.ActnMan, Vcl.ToolWin, Vcl.ActnCtrls, Vcl.ActnMenus, Vcl.StdStyleActnCtrls,
+  Vcl.ImgList, BCControls.ImageList, System.Actions;
 
 const
   INTERVAL_MSEC = 20; { fps = 1000/INTERVAL (INTERVAL 20 -> fps 50) }
@@ -75,7 +74,7 @@ var
 implementation
 
 uses
-  BCCommon.Lib, System.Math, Score, About, Vcl.Themes, BigIni, BCCommon.StyleUtils, BCCommon.FileUtils, System.IOUtils,
+  System.Math, Score, About, Vcl.Themes, BigIni, BCCommon.StyleUtils, BCCommon.FileUtils, System.IOUtils,
   BCCommon.Messages, System.Types;
 
 const

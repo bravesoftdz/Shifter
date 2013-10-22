@@ -3,8 +3,8 @@ unit YourName;
 interface
 
 uses
-  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  StdCtrls, Vcl.ExtCtrls, BCDialogs.Dlg, JvExStdCtrls, JvEdit, BCControls.Edit;
+  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs, StdCtrls, Vcl.ExtCtrls,
+  BCDialogs.Dlg, BCControls.Edit;
 
 type
   TYourNameDialog = class(TDialog)

@@ -44,8 +44,6 @@ object AboutDialog: TAboutDialog
     Anchors = [akLeft, akRight, akBottom]
     AutoSize = False
     Caption = 'Copyright '#169' 2004-2013 Lasse Rautiainen. All Rights Reserved.'
-    ExplicitTop = 163
-    ExplicitWidth = 383
   end
   object OKButton: TButton
     Left = 238
