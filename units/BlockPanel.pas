@@ -3,7 +3,7 @@ unit BlockPanel;
 interface
 
 uses
-  Winapi.Windows, Vcl.ExtCtrls, System.Classes, Vcl.Controls, Vcl.Dialogs, Vcl.Forms, Vcl.Graphics, System.SysUtils,
+  Vcl.ExtCtrls, System.Classes, Vcl.Controls, Vcl.Dialogs, Vcl.Forms, Vcl.Graphics, System.SysUtils,
   ThdTimer, System.Types;
 
 type
