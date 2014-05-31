@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
   Vcl.ComCtrls, Vcl.ExtCtrls, ThdTimer, BlockPanel, BCControls.ProgressPanel, Vcl.ActnList,
   Vcl.PlatformDefaultStyleActnCtrls, Vcl.ActnMan, Vcl.ToolWin, Vcl.ActnCtrls, Vcl.ActnMenus, Vcl.StdStyleActnCtrls,
-  Vcl.ImgList, BCControls.ImageList, System.Actions;
+  Vcl.ImgList, BCControls.ImageList, System.Actions, System.Win.TaskbarCore, Vcl.Taskbar;
 
 const
   INTERVAL_MSEC = 20; { fps = 1000/INTERVAL (INTERVAL 20 -> fps 50) }
@@ -32,6 +32,7 @@ type
     MenuImageList: TBCImageList;
     SelectStyleAction: TAction;
     ViewStyleAction: TAction;
+    Taskbar: TTaskbar;
     procedure FormCreate(Sender: TObject);
     procedure FormCanResize(Sender: TObject; var NewWidth,
       NewHeight: Integer; var Resize: Boolean);
@@ -52,7 +53,6 @@ type
     procedure OnGameStartWaiting(Sender: TObject);
     procedure OnGameEndWaiting(Sender: TObject);
     procedure OnRestore(Sender: TObject);
-    function GetProgressBarColor(Value: Integer): TColor;
     procedure SetCurrentScore(Value: Integer);
     procedure SetProgressBarPosition(Value: Integer);
     procedure StartNewGame;
@@ -207,21 +207,35 @@ begin
   StatusBar.Panels[1].Text := Format('Score: %d', [Value]);
 end;
 
-function TMainForm.GetProgressBarColor(Value: Integer): TColor;
-begin
-  if Value < 10 then
-    Result := clRed
-  else
-  if Value < 20 then
-    Result := clYellow
-  else
-    Result := clGreen
-end;
-
 procedure TMainForm.SetProgressBarPosition(Value: Integer);
+
+  function GetProgressBarColor(Value: Integer): TColor;
+  begin
+    if Value < 10 then
+      Result := clRed
+    else
+    if Value < 20 then
+      Result := clYellow
+    else
+      Result := clGreen
+  end;
+
+  function GetProgressState(Value: Integer): TTaskBarProgressState;
+  begin
+    if Value < 10 then
+      Result := TTaskBarProgressState.Error
+    else
+    if Value < 20 then
+      Result := TTaskBarProgressState.Paused
+    else
+      Result := TTaskBarProgressState.Normal
+  end;
+
 begin
   ProgressBar.Position := Value;
   ProgressBar.FillColor := GetProgressBarColor(Value);
+  Taskbar.ProgressValue := Value;
+  Taskbar.ProgressState := GetProgressState(Value);
 end;
 
 procedure TMainForm.OnGameScoreChange(Sender: TObject);
