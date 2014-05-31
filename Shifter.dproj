@@ -7,7 +7,7 @@
         <TargetedPlatforms>3</TargetedPlatforms>
         <AppType>Application</AppType>
         <FrameworkType>VCL</FrameworkType>
-        <ProjectVersion>14.6</ProjectVersion>
+        <ProjectVersion>15.4</ProjectVersion>
         <Platform Condition="'$(Platform)'==''">Win64</Platform>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Config)'=='Base' or '$(Base)'!=''">
@@ -69,6 +69,9 @@
         <Base>true</Base>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base)'!=''">
+        <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
+        <SanitizedProjectName>Shifter</SanitizedProjectName>
+        <DCC_UnitSearchPath>$(BONECODE_ROOT)\Common\units;$(BONECODE_ROOT)\Components\src\ThdTimer;$(BONECODE_ROOT)\Components\src\Controls;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
         <DCC_ImageBase>00400000</DCC_ImageBase>
         <DCC_UsePackage>vcl;rtl;dsnapcon;dsnap;dbrtl;vcldb;vclx;VclSmp;adortl;bdertl;vcldbx;ibxpress;teeui;teedb;tee;dss;visualclx;visualdbclx;vclactnband;vclshlctrls;DJCL70;JVCL200_R70;qrpt;inet;GR32_D7;GR32_DSGN_D7;$(DCC_UsePackage)</DCC_UsePackage>
         <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
@@ -93,14 +96,13 @@
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <DCC_Namespace>System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;$(DCC_Namespace)</DCC_Namespace>
         <VerInfo_Locale>1033</VerInfo_Locale>
-        <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
-        <Icon_MainIcon>Shifter_Icon.ico</Icon_MainIcon>
+        <Icon_MainIcon>images\favicon.ico</Icon_MainIcon>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1)'!=''">
         <DCC_ExeOutput>../Release</DCC_ExeOutput>
         <Manifest_File>None</Manifest_File>
         <DCC_LocalDebugSymbols>false</DCC_LocalDebugSymbols>
-        <DCC_DebugInformation>false</DCC_DebugInformation>
+        <DCC_DebugInformation>0</DCC_DebugInformation>
         <DCC_SymbolReferenceInfo>0</DCC_SymbolReferenceInfo>
         <DCC_Define>RELEASE;$(DCC_Define)</DCC_Define>
     </PropertyGroup>
@@ -113,10 +115,9 @@
         <VerInfo_Locale>1033</VerInfo_Locale>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win64)'!=''">
+        <Icon_MainIcon>images\favicon.ico</Icon_MainIcon>
         <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.3.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=Shifter;ProductVersion=1.3.0;Comments=</VerInfo_Keys>
         <VerInfo_MinorVer>3</VerInfo_MinorVer>
-        <DCC_UnitSearchPath>D:\Bonecode XE4\Common\units;D:\Bonecode XE4\Components\src\ThdTimer;D:\Bonecode XE4\Components\src\Controls;D:\Bonecode XE4\Components\src\UniSynEdit\Source;D:\Bonecode XE4\Components\src\SynWeb\Source;C:\Program Files (x86)\Embarcadero\RAD Studio\9.0\source\VirtualTree\Source;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
-        <Icon_MainIcon>images\favicon.ico</Icon_MainIcon>
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Locale>1033</VerInfo_Locale>
@@ -132,7 +133,6 @@
         <VerInfo_Locale>1033</VerInfo_Locale>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win64)'!=''">
-        <DCC_UnitSearchPath>D:\Bonecode\Common\units;D:\Bonecode\Components\src\ThdTimer;D:\Bonecode\Components\src\Controls;C:\Program Files (x86)\Embarcadero\RAD Studio\9.0\source\UniSynEdit\Source;C:\Program Files (x86)\Embarcadero\RAD Studio\9.0\source\SynWeb\Source;C:\Program Files (x86)\Embarcadero\RAD Studio\9.0\source\VirtualTree\Source;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
         <Icon_MainIcon>images\favicon.ico</Icon_MainIcon>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Locale>1033</VerInfo_Locale>
@@ -168,12 +168,7 @@
             <Form>Dialog</Form>
         </DCCReference>
         <DCCReference Include="..\..\Common\units\BCCommon.Lib.pas"/>
-        <DCCReference Include="..\..\Common\dialogs\BCDialogs.DownloadURL.pas">
-            <Form>DownloadURLDialog</Form>
-        </DCCReference>
         <DCCReference Include="..\..\Common\units\BCCommon.Dialogs.pas"/>
-        <DCCReference Include="..\..\Common\units\BCCommon.StyleUtils.pas"/>
-        <DCCReference Include="..\..\Common\units\BCCommon.Encoding.pas"/>
         <DCCReference Include="..\..\Common\units\BCCommon.Messages.pas"/>
         <DCCReference Include="..\..\Common\units\BCCommon.FileUtils.pas"/>
         <DCCReference Include="..\..\Common\units\BCCommon.StringUtils.pas"/>
@@ -229,8 +224,10 @@
                     <VersionInfoKeys Name="Comments"/>
                 </VersionInfoKeys>
                 <Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\dcloffice2k180.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\dclofficexp180.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\bcboffice2k200.bpl">Embarcadero C++Builder Office 2000 Servers Package</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\bcbofficexp200.bpl">Embarcadero C++Builder Office XP Servers Package</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\dcloffice2k200.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\dclofficexp200.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
                 </Excluded_Packages>
             </Delphi.Personality>
             <Platforms>

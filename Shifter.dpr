@@ -15,10 +15,8 @@ uses
   BigIni in '..\..\Common\units\BigIni.pas',
   BCDialogs.Dlg in '..\..\Common\dialogs\BCDialogs.Dlg.pas' {Dialog},
   BCCommon.Lib in '..\..\Common\units\BCCommon.Lib.pas',
-  BCDialogs.DownloadURL in '..\..\Common\dialogs\BCDialogs.DownloadURL.pas' {DownloadURLDialog},
+  //BCDialogs.DownloadURL in '..\..\Common\dialogs\BCDialogs.DownloadURL.pas' {DownloadURLDialog},
   BCCommon.Dialogs in '..\..\Common\units\BCCommon.Dialogs.pas',
-  BCCommon.StyleUtils in '..\..\Common\units\BCCommon.StyleUtils.pas',
-  BCCommon.Encoding in '..\..\Common\units\BCCommon.Encoding.pas',
   BCCommon.Messages in '..\..\Common\units\BCCommon.Messages.pas',
   BCCommon.FileUtils in '..\..\Common\units\BCCommon.FileUtils.pas',
   BCCommon.StringUtils in '..\..\Common\units\BCCommon.StringUtils.pas';
@@ -39,7 +37,7 @@ begin
   end;
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
-  if StyleFilename <> STYLENAME_WINDOWS then
+  if StyleFilename <> 'Windows' then
     TStyleManager.SetStyle(TStyleManager.LoadFromFile(Format('%sStyles\%s', [ExtractFilePath(ParamStr(0)), StyleFilename])));
   Application.Title := 'Shifter';
   Application.HelpFile := 'Shifter.chm';

@@ -44,7 +44,7 @@ implementation
 {$R *.dfm}
 
 uses
-  BCCommon.StyleUtils, BCCommon.FileUtils, BCCommon.StringUtils, BCCommon.Messages, YourName, BigIni, Vcl.Themes;
+  BCCommon.FileUtils, BCCommon.StringUtils, BCCommon.Messages, YourName, BigIni, Vcl.Themes;
 
 var
   FScoreDialog: TScoreDialog;
@@ -54,7 +54,7 @@ begin
   if FScoreDialog = nil then
     Application.CreateForm(TScoreDialog, FScoreDialog);
   Result := FScoreDialog;
-  SetStyledFormSize(Result);
+  //SetStyledFormSize(Result);
 end;
 
 procedure TScoreDialog.FormDestroy(Sender: TObject);

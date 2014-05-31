@@ -74,12 +74,13 @@ var
 implementation
 
 uses
-  System.Math, Score, About, Vcl.Themes, BigIni, BCCommon.StyleUtils, BCCommon.FileUtils, System.IOUtils,
+  System.Math, Score, About, Vcl.Themes, BigIni, BCCommon.FileUtils, System.IOUtils,
   BCCommon.Messages, System.Types;
 
 const
   VIEW_MENU_ITEMINDEX = 1;
   VIEW_STYLE_MENU_ITEMINDEX = 0;
+  STYLENAME_WINDOWS = 'Windows';
 
 {$R *.dfm}
 
