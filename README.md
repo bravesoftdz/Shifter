@@ -6,8 +6,10 @@ A very addictive puzzle game. Basic idea is to continuously reverse two blocks s
 
 <h3>Build Requires</h3>
 
-  * <a href="https://github.com/bonecode/Common">Common</a>
-  * <a href="https://github.com/bonecode/Components">Components</a>
+Refactoring in process...
+
+  * <strike><a href="https://github.com/bonecode/Common">Common</a></strike>
+  * <strike><a href="https://github.com/bonecode/Components">Components</a></strike>
 
 <img src="http://www.bonecode.com/images/Shifter1.png">
 <img src="http://www.bonecode.com/images/Shifter2.png">
