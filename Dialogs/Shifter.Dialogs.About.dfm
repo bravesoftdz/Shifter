@@ -16,6 +16,7 @@ object AboutDialog: TAboutDialog
   OldCreateOrder = True
   Position = poMainFormCenter
   OnClose = FormClose
+  OnShow = FormShow
   DesignSize = (
     326
     215)
