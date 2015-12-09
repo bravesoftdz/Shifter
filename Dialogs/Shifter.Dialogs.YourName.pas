@@ -21,7 +21,7 @@ type
     function GetName: string;
   public
     { Public declarations }
-    property Name: String read GetName;
+    property Name: string read GetName;
   end;
 
 function YourNameDialog: TYourNameDialog;
@@ -55,10 +55,7 @@ end;
 
 procedure TYourNameDialog.EditNameKeyPress(Sender: TObject; var Key: Char);
 begin
-  if (Key = #8) { space }
-    or ((Key >= 'a') and (Key <= 'z'))
-    or ((Key >= 'A') and (Key <= 'Z')) then
-  else
+  if not CharInSet(Key, [#8, 'a'..'z', 'A'..'Z']) then
     Key := #0;
 end;
 

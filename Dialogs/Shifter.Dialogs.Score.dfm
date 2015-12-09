@@ -1,4 +1,4 @@
-object ScoreDialog: TScoreDialog
+inherited ScoreDialog: TScoreDialog
   Left = 525
   Top = 126
   BorderIcons = []
@@ -6,13 +6,6 @@ object ScoreDialog: TScoreDialog
   Caption = 'Score'
   ClientHeight = 446
   ClientWidth = 398
-  Color = clWindow
-  Font.Charset = DEFAULT_CHARSET
-  Font.Color = clWindowText
-  Font.Height = -11
-  Font.Name = 'Tahoma'
-  Font.Style = []
-  OldCreateOrder = False
   Position = poMainFormCenter
   OnDestroy = FormDestroy
   PixelsPerInch = 96

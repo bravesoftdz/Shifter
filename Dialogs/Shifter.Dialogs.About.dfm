@@ -1,4 +1,4 @@
-object AboutDialog: TAboutDialog
+inherited AboutDialog: TAboutDialog
   Left = 430
   Top = 226
   BorderIcons = []

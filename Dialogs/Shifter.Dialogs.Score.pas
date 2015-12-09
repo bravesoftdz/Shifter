@@ -33,7 +33,7 @@ type
     procedure WriteIniFile;
   public
     { Public declarations }
-    procedure InsertNewScore(Name: string; Level, Score: Integer);
+    procedure InsertNewScore(const Name: string; Level, Score: Integer);
     procedure Open(Score: Integer = -1; Level: Integer = -1);
   end;
 
@@ -141,9 +141,9 @@ begin
   ShowModal;
 end;
 
-procedure TScoreDialog.InsertNewScore(Name: string; Level, Score: Integer);
+procedure TScoreDialog.InsertNewScore(const Name: string; Level, Score: Integer);
 var
-  i: integer;
+  i: Integer;
 begin
   { get index }
   i := 1;

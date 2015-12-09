@@ -6,7 +6,8 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
   Vcl.ComCtrls, Vcl.ExtCtrls, Shifter.Units.BlockPanel, BCControls.ProgressPanel, Vcl.ActnList,
   Vcl.PlatformDefaultStyleActnCtrls, Vcl.ActnMan, Vcl.ToolWin, Vcl.ActnCtrls, Vcl.ActnMenus, Vcl.StdStyleActnCtrls,
-  Vcl.ImgList, BCControls.ImageList, System.Actions, System.Win.TaskbarCore, Vcl.Taskbar, acAlphaImageList;
+  Vcl.ImgList, BCControls.ImageList, System.Actions, System.Win.TaskbarCore, Vcl.Taskbar, acAlphaImageList,
+  System.ImageList;
 
 const
   INTERVAL_MSEC = 20; { fps = 1000/INTERVAL (INTERVAL 20 -> fps 50) }
@@ -45,7 +46,7 @@ type
     procedure ActionViewStyleExecute(Sender: TObject);
   private
     { Private declarations }
-    BlockPanel: TBlockPanel;
+    FBlockPanel: TBlockPanel;
     FOldScore: Integer;
     procedure OnGameScoreChange(Sender: TObject);
     procedure OnGameLevelChange(Sender: TObject);
@@ -87,8 +88,8 @@ procedure TMainForm.FormCreate(Sender: TObject);
 begin
   FOldScore := 0;
   { BlockPanel }
-  BlockPanel := TBlockPanel.Create(MainForm, ImageList);
-  with BlockPanel do
+  FBlockPanel := TBlockPanel.Create(MainForm, ImageList);
+  with FBlockPanel do
   begin
     Parent := PanelGame;
     Align := alClient;
@@ -145,7 +146,7 @@ end;
 
 procedure TMainForm.OnRestore(Sender: TObject);
 begin
-  BlockPanel.Idle := False;
+  FBlockPanel.Idle := False;
 end;
 
 procedure TMainForm.OnGameStartWaiting(Sender: TObject);
@@ -236,20 +237,20 @@ end;
 
 procedure TMainForm.OnGameScoreChange(Sender: TObject);
 begin
-  CurrentScore := BlockPanel.Score;
-  ProgressBarPosition := Min(ProgressBar.Position + Round(((BlockPanel.Score - FOldScore) div 10) *
+  CurrentScore := FBlockPanel.Score;
+  ProgressBarPosition := Min(ProgressBar.Position + Round(((FBlockPanel.Score - FOldScore) div 10) *
     (500 / Timer.Interval)), ProgressBar.Max);
-  FOldScore := BlockPanel.Score;
+  FOldScore := FBlockPanel.Score;
 end;
 
 procedure TMainForm.OnGameLevelChange(Sender: TObject);
 var
   Interval: Integer;
 begin
-  StatusBar.Panels[0].Text := 'Level ' + inttostr(BlockPanel.Level);
+  StatusBar.Panels[0].Text := 'Level ' + IntToStr(FBlockPanel.Level);
   ProgressBarPosition := 50;
 
-  Interval := 500 - 50 * (BlockPanel.Level - 1);
+  Interval := 500 - 50 * (FBlockPanel.Level - 1);
   if Interval < 100 then
     Interval := 100;
   Timer.Interval := Interval;
@@ -275,17 +276,17 @@ end;
 
 procedure TMainForm.TimerTimer(Sender: TObject);
 begin
-  if not BlockPanel.Idle then
+  if not FBlockPanel.Idle then
   begin
     ProgressBarPosition := ProgressBar.Position - 1;
 
     if ProgressBar.Position = 0 then
-      BlockPanel.SetGameOver;
+      FBlockPanel.SetGameOver;
 
-    if BlockPanel.GameOver then
+    if FBlockPanel.GameOver then
     begin
       Timer.Enabled := False;
-      ScoreDialog.Open(BlockPanel.Score, BlockPanel.Level);
+      ScoreDialog.Open(FBlockPanel.Score, FBlockPanel.Level);
       if AskYesOrNo(MSG_ASKNEWGAME) then
         StartNewGame
       else
@@ -301,13 +302,13 @@ end;
 
 procedure TMainForm.StartNewGame;
 begin
-  BlockPanel.DemoRunning := False;
-  BlockPanel.NewGame;
+  FBlockPanel.DemoRunning := False;
+  FBlockPanel.NewGame;
 end;
 
 procedure TMainForm.ActionNewGameExecute(Sender: TObject);
 begin
-  if not BlockPanel.DemoRunning then
+  if not FBlockPanel.DemoRunning then
     if not AskYesOrNo(MSG_ASKAREYOUSURE) then
       Exit;
 
@@ -327,14 +328,15 @@ end;
 { player can't cheat by clicking form caption and pause game }
 procedure TMainForm.WMNCRButtonDown(var Msg: TWMNCRButtonDown);
 begin
-  if (Msg.HitTest = HTCAPTION) then;
+  if Msg.HitTest = HTCAPTION then
+    Msg.Msg := 0;
 end;
 
 procedure TMainForm.WMSysCommand(var Msg: TWMSysCommand);
 begin
   if Msg.CmdType = SC_MINIMIZE then
   begin
-    BlockPanel.Idle := True;
+    FBlockPanel.Idle := True;
     Application.Minimize
   end
   else if Msg.CmdType = SC_MAXIMIZE then

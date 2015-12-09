@@ -1,4 +1,4 @@
-object YourNameDialog: TYourNameDialog
+inherited YourNameDialog: TYourNameDialog
   Left = 194
   Top = 140
   BorderIcons = []
@@ -6,13 +6,6 @@ object YourNameDialog: TYourNameDialog
   Caption = 'Give your name'
   ClientHeight = 77
   ClientWidth = 204
-  Color = clWindow
-  Font.Charset = DEFAULT_CHARSET
-  Font.Color = clWindowText
-  Font.Height = -11
-  Font.Name = 'Tahoma'
-  Font.Style = []
-  OldCreateOrder = False
   Position = poMainFormCenter
   OnDestroy = FormDestroy
   PixelsPerInch = 96
@@ -53,21 +46,13 @@ object YourNameDialog: TYourNameDialog
       TabOrder = 0
       OnKeyPress = EditNameKeyPress
       SkinData.SkinSection = 'EDIT'
-      BoundLabel.Indent = 0
-      BoundLabel.Font.Charset = DEFAULT_CHARSET
-      BoundLabel.Font.Color = clWindowText
-      BoundLabel.Font.Height = -11
-      BoundLabel.Font.Name = 'Tahoma'
-      BoundLabel.Font.Style = []
-      BoundLabel.Layout = sclLeft
-      BoundLabel.MaxWidth = 0
-      BoundLabel.UseSkinColor = True
       EnterToTab = False
       OnlyNumbers = False
       NumbersWithDots = False
       NumbersWithSpots = False
       ErrorColor = 14803455
-      NumbersAllowNegative = False
+      NumbersAllowMinus = False
+      NumbersAllowPlus = False
     end
   end
   object PanelBottom: TPanel

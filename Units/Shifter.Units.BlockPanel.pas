@@ -26,7 +26,7 @@ type
     FBkgColor: TColor;
     FBorderColor: TColor;
     FParent: TBlockPanel;
-    FText: String;
+    FText: string;
     FTextColor: TColor;
     FSelected: Boolean;
     FRemove: Boolean;
@@ -43,7 +43,7 @@ type
     property Y: Integer read FLocation.Y write FLocation.Y;
     property Color: TColor read FBkgColor write FBkgColor;
     property BorderColor: TColor read FBorderColor write FBorderColor;
-    property Text: String read FText write FText;
+    property Text: string read FText write FText;
     property TextColor: TColor read FTextColor write FTextColor;
     property Selected: Boolean read FSelected write FSelected;
     property BlockRect: TRect read FBlockRect write FBlockRect;
@@ -108,7 +108,7 @@ type
     procedure DestroyBlocks;
     function GetColor(Tag: Integer): TColor;
     function GetBorderColor(Tag: Integer): TColor;
-    function GetText(Tag: Integer): String;
+    function GetText(Tag: Integer): string;
     function GetBlockWidth: Real;
     function GetBlockHeight: Real;
     procedure SetSelectionsDisabled;
@@ -317,15 +317,15 @@ end;
 
 constructor TBlockPanel.Create(AOwner: TComponent; ImageList: TImageList);
 begin
-  FTimer := TTimer.Create(self);
+  FTimer := TTimer.Create(Self);
   inherited Create(AOwner);
   BevelOuter := bvNone;
   DoubleBuffered := True;
   FImageList := ImageList;
   FBitmap := TBitmap.Create;
-  FPaintBox := TPaintBox.Create(self);
+  FPaintBox := TPaintBox.Create(Self);
   OnResize := BlockPanelResize;
-  FPaintBox.Parent := self;
+  FPaintBox.Parent := Self;
   FPaintBox.OnPaint := BlockPanelPaint;
   FPaintBox.OnMouseMove := BlockPanelMouseMove;
   FPaintBox.OnClick := BlockPanelMouseClick;
@@ -429,7 +429,7 @@ begin
   end;
 end;
 
-function TBlockPanel.GetText(Tag: Integer): String;
+function TBlockPanel.GetText(Tag: Integer): string;
 begin
   case Tag of
     0: Result := 'S';
@@ -486,7 +486,7 @@ begin
   for x := 0 to 7 do
     for y := 0 to 7 do
     begin
-    Block := TBlock.Create(self);
+    Block := TBlock.Create(Self);
     repeat
       Block.Tag := Random(Seed);
     until not ThreeInARow(x, y, Block.Tag);
@@ -518,14 +518,14 @@ end;
 procedure TBlockPanel.CreateDemoTextBlocks;
 var
   Block: TTextBlock;
-  Text: String;
+  Text: string;
   i: Integer;
 begin
   FDemoTextBlocks := TList.Create;
   Text := 'Press F2 to start a new game!';
   for i := 0 to Length(Text) - 1 do
   begin
-    Block := TTextBlock.Create(self);
+    Block := TTextBlock.Create(Self);
     Block.X := 0;
     Block.Y := 0;
     Block.BorderColor := clBtnShadow;
@@ -549,14 +549,14 @@ end;
 procedure TBlockPanel.CreateDemoBlocks;
 var
   Block: TBlock;
-  Text: String;
+  Text: string;
   i: Integer;
 begin
   FDemoBlocks := TList.Create;
   Text := 'SHIFTER';
   for i := 0 to Length(Text) - 1 do
   begin
-    Block := TBlock.Create(self);
+    Block := TBlock.Create(Self);
     Block.X := 0;
     Block.Y := 0;
     Block.ImageList := FImageList;
@@ -608,7 +608,7 @@ begin
     else k := 1;
     for j := 0 to 3 do
     begin
-      FBkgBitmap.Canvas.Pixels[k,i] := clBtnFace;
+      FBkgBitmap.Canvas.Pixels[k, i] := clBtnFace;
       k := k + 2;
     end;
   end;
@@ -964,7 +964,7 @@ begin
     for j := 7 downto 0 do
     if FBlocks[i, j] = nil then
     begin
-      Block := TBlock.Create(self);
+      Block := TBlock.Create(Self);
       Block.Tag := Random(Seed);
       Block.Color := GetColor(Block.Tag);
       Block.BorderColor := GetBorderColor(Block.Tag);
@@ -1002,7 +1002,7 @@ begin
     begin
       if FBlocks[i, j] = nil then
       begin
-        Block := TPointsBlock.Create(self);
+        Block := TPointsBlock.Create(Self);
         Block.Text := IntToStr(FPoints);
         FScore := FScore + FPoints;
         if Assigned(FOnScoreChange) then
@@ -1460,7 +1460,7 @@ begin
     FBkgBitmap.Canvas, Rect(0,0,FBkgBitmap.Width, FBkgBitmap.Height));
 end;
 
-function TBlockPanel.GetRunning: boolean;
+function TBlockPanel.GetRunning: Boolean;
 begin
   Result := FTimer.Enabled;
 end;
@@ -1475,7 +1475,7 @@ begin
   FGameState := gsInitialize;
 end;
 
-procedure TBlockPanel.SetRunning(const Value: boolean);
+procedure TBlockPanel.SetRunning(const Value: Boolean);
 begin
   FTimer.Enabled := Value;
 end;
