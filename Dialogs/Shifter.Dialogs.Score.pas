@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs, BCCommon.Dialogs.Base,
-  ExtCtrls, StdCtrls, Vcl.Grids, BCControls.StringGrid, Vcl.ActnList, System.Actions;
+  ExtCtrls, StdCtrls, Vcl.Grids, BCControl.StringGrid, Vcl.ActnList, System.Actions;
 
 const
   SCORECOLUMNS = 5;

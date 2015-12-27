@@ -4,9 +4,9 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
-  Vcl.ComCtrls, Vcl.ExtCtrls, Shifter.Units.BlockPanel, BCControls.ProgressPanel, Vcl.ActnList,
+  Vcl.ComCtrls, Vcl.ExtCtrls, Shifter.Units.BlockPanel, BCControl.ProgressPanel, Vcl.ActnList,
   Vcl.PlatformDefaultStyleActnCtrls, Vcl.ActnMan, Vcl.ToolWin, Vcl.ActnCtrls, Vcl.ActnMenus, Vcl.StdStyleActnCtrls,
-  Vcl.ImgList, BCControls.ImageList, System.Actions, System.Win.TaskbarCore, Vcl.Taskbar, acAlphaImageList,
+  Vcl.ImgList, BCControl.ImageList, System.Actions, System.Win.TaskbarCore, Vcl.Taskbar, acAlphaImageList,
   System.ImageList;
 
 const
