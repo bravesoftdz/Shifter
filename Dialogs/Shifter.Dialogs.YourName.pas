@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs, StdCtrls, Vcl.ExtCtrls,
-  BCCommon.Dialogs.Base, BCControl.Edit, sEdit;
+  BCCommon.Dialog.Base, BCControl.Edit, sEdit;
 
 type
   TYourNameDialog = class(TBCBaseDialog)

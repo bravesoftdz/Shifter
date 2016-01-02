@@ -3,7 +3,7 @@ unit Shifter.Dialogs.Score;
 interface
 
 uses
-  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs, BCCommon.Dialogs.Base,
+  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs, BCCommon.Dialog.Base,
   ExtCtrls, StdCtrls, Vcl.Grids, BCControl.StringGrid, Vcl.ActnList, System.Actions;
 
 const

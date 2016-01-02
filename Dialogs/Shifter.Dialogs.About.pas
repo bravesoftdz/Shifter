@@ -3,7 +3,7 @@ unit Shifter.Dialogs.About;
 interface
 
 uses
-  System.SysUtils, Winapi.Windows, System.Classes, Vcl.Graphics, BCCommon.Dialogs.Base, Vcl.Controls, Vcl.Forms,
+  System.SysUtils, Winapi.Windows, System.Classes, Vcl.Graphics, BCCommon.Dialog.Base, Vcl.Controls, Vcl.Forms,
   Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls;
 
 type
